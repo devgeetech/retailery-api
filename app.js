@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const graphqlHttp = require('express-graphql');
 
 const graphqlSchema = require('./graphql/schema')
@@ -18,6 +19,7 @@ firebase.initializeApp(config);
 
 const app = express();
 
+app.use(cors())
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
