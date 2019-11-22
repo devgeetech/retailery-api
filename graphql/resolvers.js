@@ -29,7 +29,7 @@ module.exports = {
         }
     },
     updRating: async function({ratingDat}, req){
-        console.log("initiated")
+        // console.log("initiated")
         const db = firebase.firestore();
         const ratSet = db.collection('products').doc(ratingDat.prId)
         snpshot = await db.collection('products').doc(ratingDat.prId).get()
@@ -66,5 +66,25 @@ module.exports = {
                 })
             }
         })
+    },
+    delwish: async function ({delWishDat}, req){
+        const db = firebase.firestore();
+        const srchRef = db.collection("customer").doc(delWishDat.usId).get()
+        .then(snapshot => {
+            let cpList = snapshot.data().wish
+            //console.log(cpList)
+            cpList.splice( cpList.indexOf(delWishDat.prId), 1 );
+            //console.log(cpList)
+            db.collection("customer").doc(delWishDat.usId).update({
+                wish: cpList
+            })
+            // props.history.push({
+            //     pathname: "/wish"
+            // });
+            return {
+                ...cpList
+            }
+        })
+
     }
 }

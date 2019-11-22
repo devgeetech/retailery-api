@@ -4,7 +4,15 @@ const graphqlHttp = require('express-graphql');
 const graphqlSchema = require('./graphql/schema')
 const graphqlResolver = require('./graphql/resolvers')
 const firebase =require('firebase');
-const { config } = require('./keys/keyStore')
+
+const config = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH,
+    databaseURL: process.env.FIREBASE_DB,
+    storageBucket: process.env.FIREBASE_STR,
+    projectId: "retailery",
+    messagingSenderId: process.env.FIREBASE_MESSAGING_KEY
+}
 
 firebase.initializeApp(config);
 

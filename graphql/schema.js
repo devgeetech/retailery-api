@@ -68,6 +68,7 @@ module.exports = buildSchema(`
     type rootMutation {
         updRating(ratingDat: ratDat!): Int
         addWish(addWishDat: wiDat!): Int
+        delWish(delWishDat: wiDat!): [String]
     }
 
     schema{
